@@ -1,0 +1,11 @@
+<div ng-hide="cc.champinfo" class="whirly-loader loading-img">
+  Loading…
+</div>
+
+<div></div>
+
+<!-- {{cc.champinfo}} -->
+
+<div class="col-md-12">
+   <img class="champ-splash-img" ng-src="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{{cc.champinfo.name}}_{{$index}}.jpg" ng-repeat="skin in cc.champinfo.skins" />
+</div>

@@ -1,0 +1,28 @@
+<div ng-hide="hc.champs" class="whirly-loader loading-img">
+  Loading…
+</div>
+
+<table ng-show="hc.champs" class="table">
+   <thead>
+      <tr>
+         <th>Champion</th>
+         <th>Skill 1</th>
+         <th>Skill 2</th>
+         <th>Skill 3</th>
+         <th>Ultimate</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr ng-repeat="champ in hc.champs">
+         <td>
+            <a ng-href="/#/champ/{{champ.id}}">
+               <img ng-src="http://ddragon.leagueoflegends.com/cdn/5.24.2/img/champion/{{champ.name}}.png" />
+            </a>
+         </td>
+         <td>{{champ.spells[0].name}}</td>
+         <td>{{champ.spells[1].name}}</td>
+         <td>{{champ.spells[2].name}}</td>
+         <td>{{champ.spells[3].name}}</td>
+      </tr>
+   </tbody>
+</table>
