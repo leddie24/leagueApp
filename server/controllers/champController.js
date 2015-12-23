@@ -13,7 +13,12 @@ function getChamp(id, properties, callback) {
       if (error) {
          console.log(error, 'error getting static champ info');
       } else {
-         callback(JSON.parse(response.body));
+         console.log(response.statusCode);
+         if (response.statusCode != 404) {
+            callback(JSON.parse(response.body));
+         } else {
+            console.log('champ not found');
+         }
       }
    });
 }
@@ -66,33 +71,36 @@ module.exports = {
                });
             } else {
                // Return cached champions
-               console.log('return cached!!!!');
+               console.log('return cached champions');
                res.json( value );
             }
         }
       });
    },
    getChampInfo: function(req, res) {
+      // Get specific champ info from cache
       myCache.get( "champInfo" + req.params.id, function (err, value) {
          if (!err){
+            // Not in cache, add champ info to cache
             if (value == undefined) {
                console.log('key not found');
 
                var champInfo = null;
-               var properties = ['skins', 'spells'];
+               var properties = ['passive', 'skins', 'spells', 'stats', 'info'];
                getChamp(req.params.id, properties, function(data) {
                   champInfo = data;
                   myCache.set("champInfo" + req.params.id, champInfo, 86400, function (err, success) {
                      if( !err && success ){
                         console.log( success );
+                        console.log('got champ info and cached it', champInfo.name);
+                        res.json(champInfo);
                      } else {
                         console.log(err);
                      }
                   });
-                  console.log('got champ info and cached it', champInfo.name);
-                  res.json(champInfo);
                })
             } else {
+               // Return champ info from cache
                console.log('cached info for champ ', value.name);
                res.json(value);
             }

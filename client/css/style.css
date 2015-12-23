@@ -6,6 +6,33 @@
    height: 100%;
 }
 
-.champ-splash-img {
+.champ-splash-img,
+.champ-load-img {
    width: 100%;
+}
+
+.colorFF9900 {
+   color: #FF9900;
+}
+
+.colorFF8C00 {
+   color: #ff8C00;
+}
+
+.color99FF99 {
+   color: #99ff99;
+}
+
+.champ-bg {
+   display: none;
+   position: absolute;
+   top: 0px;
+   left: 0px;
+   width: 100%;
+}
+
+.champ-view {
+   background: #fff;
+   position: relative;
+   overflow: hidden;
 }

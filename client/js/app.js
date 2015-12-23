@@ -1,4 +1,4 @@
-var app = angular.module('leagueApp', ['ui.router', 'ui.router.stateHelper']);
+var app = angular.module('leagueApp', ['ui.router', 'ui.router.stateHelper', 'ngSanitize']);
 
 app.config(function ($urlRouterProvider, stateHelperProvider) {
    stateHelperProvider
@@ -16,4 +16,16 @@ app.config(function ($urlRouterProvider, stateHelperProvider) {
       })
 
       $urlRouterProvider.otherwise('/');
+});
+
+app.directive('slider', function($timeout) {
+  return {
+    restrict: 'AE',
+    replace: true,
+    scope: {
+      images: '='
+    },
+    link: function(scope, elem, attrs) {},
+    templateUrl: './templates/slider.html'
+  };
 });
